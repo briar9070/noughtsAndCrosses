@@ -1,0 +1,11 @@
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(202*3px);
+    
+}
+.gridItem {
+    border: black 1px solid;
+    width: 200px;
+    height: 200px;
+}
