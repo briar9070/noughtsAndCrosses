@@ -1,4 +1,4 @@
-const gameBoard = {
+let gameBoard = {
     boardArray : ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'], //baseline array for the board. e stands for empty
     
     populateBoard : function () {
@@ -15,21 +15,28 @@ const gameBoard = {
             }
         }
     },
-    //insetGameToken adds an event listener to each of the boxes. this listener updates the above array and 
+    //insetGameToken first if statement checks to see if a token has been placed already. If there is nothing there it adds an event listener to checked box.
     insertGameToken : function () {
         document.querySelectorAll('.gridItem').forEach(item => {
             item.addEventListener('click', function (e) {
                 thisGridReferenceID = e.target.id;
-                numberReference = thisGridReferenceID.charAt(thisGridReferenceID.length - 1) ;
-                if (gameFlow.turn === 0){
-                    gameBoard.boardArray[numberReference] = 'x';
-                    gameBoard.populateBoard();
-                    gameFlow.turnCounter();
+                numberReference = thisGridReferenceID.charAt(thisGridReferenceID.length - 1);
+                if (gameBoard.boardArray[numberReference] == 'x' || gameBoard.boardArray[numberReference] == 'o'){
+                    console.log("Not a valid move");
                 }
-                else if (gameFlow.turn === 1){
-                    gameBoard.boardArray[numberReference] = 'o';
-                    gameBoard.populateBoard();
-                    gameFlow.turnCounter();
+                else {
+                    if (gameFlow.turn === 0){
+                        gameBoard.boardArray[numberReference] = 'x';
+                        gameBoard.populateBoard();
+                        gameFlow.checkWinStatus();
+                        gameFlow.turnCounter();
+                    }
+                    else if (gameFlow.turn === 1){
+                        gameBoard.boardArray[numberReference] = 'o';
+                        gameBoard.populateBoard();
+                        gameFlow.checkWinStatus();
+                        gameFlow.turnCounter();
+                    }
                 }
             })
         })
@@ -43,14 +50,20 @@ const gameBoard = {
 }
 
 const gameFlow = {
-    startGame : function () {
+    startGame : function () { //initialises the game through the gameBoard function
         gameBoard.insertGameToken();
 
     },
 
-    turn : 0,
+    checkWinStatus : function () {//checks if the tokens are aligned in a winning pattern.
+        if (gameBoard.boardArray[0] === gameBoard.boardArray[1] && gameBoard.boardArray[1] === gameBoard.boardArray[2]){
+            console.log("you win");
+        }
+    },
 
-    turnCounter : function () {
+    turn : 0, //keeps track of whose turn it is. 0 or 1 for two player states
+
+    turnCounter : function () {//switches the players
         if (gameFlow.turn === 0) {
             gameFlow.turn = 1;
         }
@@ -69,5 +82,10 @@ const player2 = new Player("Computer", "o")
 
 startGameButton = document.getElementById('startButton');
 startGameButton.addEventListener('click', function (){
+    gameBoard.insertGameToken();
+})
 
+resetGameButton = document.getElementById('resetButton');
+resetGameButton.addEventListener('click', function(){
+    gameBoard.resetBoard();
 })
