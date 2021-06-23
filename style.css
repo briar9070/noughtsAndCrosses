@@ -1,4 +1,4 @@
-#container {
+#gameContainer {
     display: flex;
     flex-wrap: wrap;
     width: calc(202*3px);
