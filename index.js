@@ -21,9 +21,16 @@ const gameBoard = {
             item.addEventListener('click', function (e) {
                 thisGridReferenceID = e.target.id;
                 numberReference = thisGridReferenceID.charAt(thisGridReferenceID.length - 1) ;
-                console.log(numberReference);
-                gameBoard.boardArray[numberReference] = 'x';
-                gameBoard.populateBoard();
+                if (gameFlow.turn === 0){
+                    gameBoard.boardArray[numberReference] = 'x';
+                    gameBoard.populateBoard();
+                    gameFlow.turnCounter();
+                }
+                else if (gameFlow.turn === 1){
+                    gameBoard.boardArray[numberReference] = 'o';
+                    gameBoard.populateBoard();
+                    gameFlow.turnCounter();
+                }
             })
         })
     },
@@ -34,3 +41,33 @@ const gameBoard = {
     },
 
 }
+
+const gameFlow = {
+    startGame : function () {
+        gameBoard.insertGameToken();
+
+    },
+
+    turn : 0,
+
+    turnCounter : function () {
+        if (gameFlow.turn === 0) {
+            gameFlow.turn = 1;
+        }
+        else if (gameFlow.turn === 1) {
+            gameFlow.turn = 0;
+        }
+    }
+}
+function Player (name, piece) {
+    this.name = name
+    this.piece = piece
+}
+
+const player1 = new Player("Lewis", "x");
+const player2 = new Player("Computer", "o")
+
+startGameButton = document.getElementById('startButton');
+startGameButton.addEventListener('click', function (){
+
+})
