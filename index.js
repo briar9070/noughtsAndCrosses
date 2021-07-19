@@ -23,17 +23,20 @@ let gameBoard = {
                 numberReference = thisGridReferenceID.charAt(thisGridReferenceID.length - 1);
                 if (gameBoard.boardArray[numberReference] == 'x' || gameBoard.boardArray[numberReference] == 'o'){
                     console.log("Not a valid move");
+                    alert("Not a Valid move");
                 }
                 else {
                     if (gameFlow.turn === 0){
                         gameBoard.boardArray[numberReference] = 'x';
                         gameBoard.populateBoard();
+                        gameFlow.totalTurnIncrement();
                         gameFlow.checkWinStatus();
                         gameFlow.turnCounter();
                     }
                     else if (gameFlow.turn === 1){
                         gameBoard.boardArray[numberReference] = 'o';
                         gameBoard.populateBoard();
+                        gameFlow.totalTurnIncrement();
                         gameFlow.checkWinStatus();
                         gameFlow.turnCounter();
                     }
@@ -56,12 +59,38 @@ const gameFlow = {
     },
 
     checkWinStatus : function () {//checks if the tokens are aligned in a winning pattern.
-        if (gameBoard.boardArray[0] === gameBoard.boardArray[1] && gameBoard.boardArray[1] === gameBoard.boardArray[2]){
-            console.log("you win");
+        if (gameBoard.boardArray[0] != "e" && gameBoard.boardArray[0] === gameBoard.boardArray[1] && gameBoard.boardArray[1] === gameBoard.boardArray[2]){
+            console.log("You Win");
+        }
+        else if (gameBoard.boardArray[3] != "e" && gameBoard.boardArray[3] === gameBoard.boardArray[4] && gameBoard.boardArray[4] === gameBoard.boardArray[5]){
+            console.log("You Win");
+        }
+        else if (gameBoard.boardArray[6] != "e" && gameBoard.boardArray[6] === gameBoard.boardArray[7] && gameBoard.boardArray[7] === gameBoard.boardArray[8]){
+            console.log("You Win");
+        }
+        else if (gameBoard.boardArray[0] != "e" && gameBoard.boardArray[0] === gameBoard.boardArray[3] && gameBoard.boardArray[3] === gameBoard.boardArray[6]){
+            console.log("You Win");
+        }
+        else if (gameBoard.boardArray[1] != "e" && gameBoard.boardArray[1] === gameBoard.boardArray[4] && gameBoard.boardArray[4] === gameBoard.boardArray[7]){
+            console.log("You Win");
+        }
+        else if (gameBoard.boardArray[2] != "e" && gameBoard.boardArray[2] === gameBoard.boardArray[5] && gameBoard.boardArray[5] === gameBoard.boardArray[8]){
+            console.log("You Win");
+        }
+        else if (gameBoard.boardArray[0] != "e" && gameBoard.boardArray[0] === gameBoard.boardArray[4] && gameBoard.boardArray[4] === gameBoard.boardArray[8]){
+            console.log("You Win");
+        }
+        else if (gameBoard.boardArray[2] != "e" && gameBoard.boardArray[2] === gameBoard.boardArray[4] && gameBoard.boardArray[4] === gameBoard.boardArray[6]){
+            console.log("You Win");
+        }
+        else if (this.totalTurns === 9) {
+            console.log("That's a Draw!")
         }
     },
 
     turn : 0, //keeps track of whose turn it is. 0 or 1 for two player states
+
+    totalTurns : 0, //Keeps track of the total number of turns in the game
 
     turnCounter : function () {//switches the players
         if (gameFlow.turn === 0) {
@@ -70,15 +99,20 @@ const gameFlow = {
         else if (gameFlow.turn === 1) {
             gameFlow.turn = 0;
         }
+    },
+
+    totalTurnIncrement : function () {
+        gameFlow.totalTurns+= 1;
     }
 }
-function Player (name, piece) {
+function Player (name, piece,score) {
     this.name = name
     this.piece = piece
+    this.score = score
 }
 
-const player1 = new Player("Lewis", "x");
-const player2 = new Player("Computer", "o")
+const player1 = new Player("Lewis", "x",0);
+const player2 = new Player("Computer", "o",0)
 
 startGameButton = document.getElementById('startButton');
 startGameButton.addEventListener('click', function (){
