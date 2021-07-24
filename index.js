@@ -1,4 +1,5 @@
 let gameBoard = {
+
     boardArray : ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'], //baseline array for the board. e stands for empty
     
     populateBoard : function () {
@@ -47,41 +48,68 @@ let gameBoard = {
     
     resetBoard : function(){//function resets the baseline array.
         this.boardArray = ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'];
+        gameFlow.totalTurns = 0;
         gameBoard.populateBoard();
     },
 
 }
 
 const gameFlow = {
+    
+    totalGamesToPlay : 3,
+
+    totalGamesIncreased : function () {
+        this.totalGamesToPlay--;
+        console.log(this.totalGamesToPlay);
+        if (this.totalGamesToPlay === 0 ){
+            if (player1.score > player2.score) {
+                alert (player1.name + "is the winner")
+            }
+            else if (player2.score > player1.score) {
+                alert (player2.name + "is the winner")
+            }
+            else if (player1.score == player2.score){ 
+                alert("Bore Draw");
+            }
+        }
+    },
+
     startGame : function () { //initialises the game through the gameBoard function
         gameBoard.insertGameToken();
-
     },
 
     checkWinStatus : function () {//checks if the tokens are aligned in a winning pattern.
         if (gameBoard.boardArray[0] != "e" && gameBoard.boardArray[0] === gameBoard.boardArray[1] && gameBoard.boardArray[1] === gameBoard.boardArray[2]){
             console.log("You Win");
+            this.totalGamesIncreased();
         }
         else if (gameBoard.boardArray[3] != "e" && gameBoard.boardArray[3] === gameBoard.boardArray[4] && gameBoard.boardArray[4] === gameBoard.boardArray[5]){
             console.log("You Win");
+            this.totalGamesIncreased();
         }
         else if (gameBoard.boardArray[6] != "e" && gameBoard.boardArray[6] === gameBoard.boardArray[7] && gameBoard.boardArray[7] === gameBoard.boardArray[8]){
             console.log("You Win");
+            this.totalGamesIncreased();
         }
         else if (gameBoard.boardArray[0] != "e" && gameBoard.boardArray[0] === gameBoard.boardArray[3] && gameBoard.boardArray[3] === gameBoard.boardArray[6]){
             console.log("You Win");
+            this.totalGamesIncreased();
         }
         else if (gameBoard.boardArray[1] != "e" && gameBoard.boardArray[1] === gameBoard.boardArray[4] && gameBoard.boardArray[4] === gameBoard.boardArray[7]){
             console.log("You Win");
+            this.totalGamesIncreased();
         }
         else if (gameBoard.boardArray[2] != "e" && gameBoard.boardArray[2] === gameBoard.boardArray[5] && gameBoard.boardArray[5] === gameBoard.boardArray[8]){
             console.log("You Win");
+            this.totalGamesIncreased();
         }
         else if (gameBoard.boardArray[0] != "e" && gameBoard.boardArray[0] === gameBoard.boardArray[4] && gameBoard.boardArray[4] === gameBoard.boardArray[8]){
             console.log("You Win");
+            this.totalGamesIncreased();
         }
         else if (gameBoard.boardArray[2] != "e" && gameBoard.boardArray[2] === gameBoard.boardArray[4] && gameBoard.boardArray[4] === gameBoard.boardArray[6]){
             console.log("You Win");
+            this.totalGamesIncreased();
         }
         else if (this.totalTurns === 9) {
             console.log("That's a Draw!")
@@ -113,6 +141,8 @@ function Player (name, piece,score) {
 
 const player1 = new Player("Lewis", "x",0);
 const player2 = new Player("Computer", "o",0)
+
+
 
 startGameButton = document.getElementById('startButton');
 startGameButton.addEventListener('click', function (){
