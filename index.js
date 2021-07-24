@@ -68,7 +68,7 @@ let gameBoard = {
 
 const gameFlow = {
     
-    totalGamesToPlay : 3,
+    totalGamesToPlay : 5,
 
     totalGamesIncreased : function () {
         this.totalGamesToPlay--;
@@ -92,36 +92,111 @@ const gameFlow = {
 
     checkWinStatus : function () {//checks if the tokens are aligned in a winning pattern.
         if (gameBoard.boardArray[0] != "e" && gameBoard.boardArray[0] === gameBoard.boardArray[1] && gameBoard.boardArray[1] === gameBoard.boardArray[2]){
-            console.log("You Win");
             this.totalGamesIncreased();
+            if (gameBoard.boardArray[0] == player1.piece){
+                player1.increaseScore();
+                console.log(player1.name + ' wins!');
+                console.log("Current score : " + player1.name +" :" +player1.score + " " + player2.name + " :" + player2.score);
+            }
+            else if (gameBoard.boardArray[0] == player2.piece){
+                player2.increaseScore();
+                console.log(player2.name + ' wins!');
+                console.log("Current score : " + player1.name +" :" +player1.score + " " + player2.name + " :" + player2.score);
+            }
         }
         else if (gameBoard.boardArray[3] != "e" && gameBoard.boardArray[3] === gameBoard.boardArray[4] && gameBoard.boardArray[4] === gameBoard.boardArray[5]){
             console.log("You Win");
             this.totalGamesIncreased();
+            if (gameBoard.boardArray[3] == player1.piece){
+                player1.increaseScore();
+                console.log(player1.name + ' wins!');
+                console.log("Current score : " + player1.name +" :" +player1.score + " " + player2.name + " :" + player2.score);
+            }
+            else if (gameBoard.boardArray[3] == player2.piece){
+                player2.increaseScore();
+                console.log(player2.name + ' wins!');
+                console.log("Current score : " + player1.name +" :" +player1.score + " " + player2.name + " :" + player2.score);
+            }
         }
         else if (gameBoard.boardArray[6] != "e" && gameBoard.boardArray[6] === gameBoard.boardArray[7] && gameBoard.boardArray[7] === gameBoard.boardArray[8]){
             console.log("You Win");
             this.totalGamesIncreased();
+            if (gameBoard.boardArray[6] == player1.piece){
+                player1.increaseScore();
+                console.log(player1.name + ' wins!');
+                console.log("Current score : " + player1.name +" :" +player1.score + " " + player2.name + " :" + player2.score);
+            }
+            else if (gameBoard.boardArray[6] == player2.piece){
+                player2.increaseScore();
+                console.log(player2.name + ' wins!');
+                console.log("Current score : " + player1.name +" :" +player1.score + " " + player2.name + " :" + player2.score);
+            }
         }
         else if (gameBoard.boardArray[0] != "e" && gameBoard.boardArray[0] === gameBoard.boardArray[3] && gameBoard.boardArray[3] === gameBoard.boardArray[6]){
-            console.log("You Win");
             this.totalGamesIncreased();
+            if (gameBoard.boardArray[0] == player1.piece){
+                player1.increaseScore();
+                console.log(player1.name + ' wins!');
+                console.log("Current score : " + player1.name +" :" +player1.score + " " + player2.name + " :" + player2.score);
+            }
+            else if (gameBoard.boardArray[0] == player2.piece){
+                player2.increaseScore();
+                console.log(player2.name + ' wins!');
+                console.log("Current score : " + player1.name +" :" +player1.score + " " + player2.name + " :" + player2.score);
+            }
         }
         else if (gameBoard.boardArray[1] != "e" && gameBoard.boardArray[1] === gameBoard.boardArray[4] && gameBoard.boardArray[4] === gameBoard.boardArray[7]){
-            console.log("You Win");
             this.totalGamesIncreased();
+            if (gameBoard.boardArray[1] == player1.piece){
+                player1.increaseScore();
+                console.log(player1.name + ' wins!');
+                console.log("Current score : " + player1.name +" :" +player1.score + " " + player2.name + " :" + player2.score);
+            }
+            else if (gameBoard.boardArray[1] == player2.piece){
+                player2.increaseScore();
+                console.log(player2.name + ' wins!');
+                console.log("Current score : " + player1.name +" :" +player1.score + " " + player2.name + " :" + player2.score);
+            }
         }
         else if (gameBoard.boardArray[2] != "e" && gameBoard.boardArray[2] === gameBoard.boardArray[5] && gameBoard.boardArray[5] === gameBoard.boardArray[8]){
-            console.log("You Win");
             this.totalGamesIncreased();
+            if (gameBoard.boardArray[1] == player1.piece){
+                player1.increaseScore();
+                console.log(player1.name + ' wins!');
+                console.log("Current score : " + player1.name +" :" +player1.score + " " + player2.name + " :" + player2.score);
+            }
+            else if (gameBoard.boardArray[1] == player2.piece){
+                player2.increaseScore();
+                console.log(player2.name + ' wins!');
+                console.log("Current score : " + player1.name +" :" +player1.score + " " + player2.name + " :" + player2.score);
+            }
         }
         else if (gameBoard.boardArray[0] != "e" && gameBoard.boardArray[0] === gameBoard.boardArray[4] && gameBoard.boardArray[4] === gameBoard.boardArray[8]){
-            console.log("You Win");
             this.totalGamesIncreased();
+            if (gameBoard.boardArray[0] == player1.piece){
+                player1.increaseScore();
+                console.log(player1.name + ' wins!');
+                console.log("Current score : " + player1.name +" :" +player1.score + " " + player2.name + " :" + player2.score);
+            }
+            else if (gameBoard.boardArray[0] == player2.piece){
+                player2.increaseScore();
+                console.log(player2.name + ' wins!');
+                console.log("Current score : " + player1.name +" :" +player1.score + " " + player2.name + " :" + player2.score);
+            }
         }
         else if (gameBoard.boardArray[2] != "e" && gameBoard.boardArray[2] === gameBoard.boardArray[4] && gameBoard.boardArray[4] === gameBoard.boardArray[6]){
-            console.log("You Win");
             this.totalGamesIncreased();
+            if (gameBoard.boardArray[2] == player1.piece){
+                player1.increaseScore();
+                player1.increaseScore();
+                console.log(player1.name + ' wins!');
+                console.log("Current score : " + player1.name +" :" +player1.score + " " + player2.name + " :" + player2.score);
+            }
+            else if (gameBoard.boardArray[2] == player2.piece){
+                player2.increaseScore();
+                console.log(player2.name + ' wins!');
+                console.log("Current score : " + player1.name +" :" +player1.score + " " + player2.name + " :" + player2.score);
+            }
         }
         else if (this.totalTurns === 9) {
             console.log("That's a Draw!")
@@ -149,6 +224,9 @@ function Player (name, piece,score) {
     this.name = name
     this.piece = piece
     this.score = score
+    this.increaseScore = function () {
+        this.score++;
+    }
 }
 
 const player1 = new Player("Lewis", "x",0);
