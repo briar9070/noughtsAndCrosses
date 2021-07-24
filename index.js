@@ -18,6 +18,14 @@ let gameBoard = {
     },
     //insetGameToken first if statement checks to see if a token has been placed already. If there is nothing there it adds an event listener to checked box.
     insertGameToken : function () {
+        if (gameFlow.turn === 1){
+            nextPieceTextBox = document.getElementById('nextPiecePlay');
+            nextPieceTextBox.textContent = 'O';
+        }
+        else if (gameFlow.turn === 0){
+            nextPieceTextBox = document.getElementById('nextPiecePlay');
+            nextPieceTextBox.textContent = 'X';
+        }
         document.querySelectorAll('.gridItem').forEach(item => {
             item.addEventListener('click', function (e) {
                 thisGridReferenceID = e.target.id;
@@ -29,6 +37,8 @@ let gameBoard = {
                 else {
                     if (gameFlow.turn === 0){
                         gameBoard.boardArray[numberReference] = 'x';
+                        nextPieceTextBox = document.getElementById('nextPiecePlay');
+                        nextPieceTextBox.textContent = 'O';
                         gameBoard.populateBoard();
                         gameFlow.totalTurnIncrement();
                         gameFlow.checkWinStatus();
@@ -36,6 +46,8 @@ let gameBoard = {
                     }
                     else if (gameFlow.turn === 1){
                         gameBoard.boardArray[numberReference] = 'o';
+                        nextPieceTextBox = document.getElementById('nextPiecePlay');
+                        nextPieceTextBox.textContent = 'X';
                         gameBoard.populateBoard();
                         gameFlow.totalTurnIncrement();
                         gameFlow.checkWinStatus();
@@ -147,9 +159,10 @@ const player2 = new Player("Computer", "o",0)
 startGameButton = document.getElementById('startButton');
 startGameButton.addEventListener('click', function (){
     gameBoard.insertGameToken();
-})
+});
 
 resetGameButton = document.getElementById('resetButton');
 resetGameButton.addEventListener('click', function(){
     gameBoard.resetBoard();
-})
+});
+
